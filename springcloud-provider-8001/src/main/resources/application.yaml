@@ -1,0 +1,32 @@
+server:
+  port: 8001
+
+spring:
+  application:
+    name: springcloud-demo-provider  # 项目名
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    username: root
+    password: 3306
+    url: jdbc:mysql://8.131.87.222/cloud01?useUnicode=true?characterEncoding=utf-8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+mybatis:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # 指定Sql打印
+    cache-enabled: true   # 开启二级缓存
+    map-underscore-to-camel-case: true      #开启驼峰命名
+  type-aliases-package: com.example.entity  # 实体类路径用来开启别名
+  mapper-locations: classpath:mapper/*.xml  # mapper.xml 文件的位置
+
+# eureka配置,服务注册到哪里
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka-7001.com:7001/eureka/,http://eureka-7002.com:7002/eureka/,http://eureka-7003.com:7003/eureka/
+  instance:
+    instance-id: provider-8001  #修改eureka默认描述信息
+
+info:
+  app.name: provider-8001
+  company.name: codetotos.comx

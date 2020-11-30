@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.DeptMapper">
+
+    <insert id="insertDept">
+        insert into dept (deptname, db_source) values (#{deptname,jdbcType=VARCHAR},database())
+    </insert>
+
+    <select id="findAllDepts" resultType="com.example.entity.Dept">
+        select deptno, deptname, db_source from dept
+    </select>
+
+    <select id="findDeptById" resultType="com.example.entity.Dept">
+        select deptno, deptname, db_source from dept where deptno = #{deptno,jdbcType=INTEGER}
+    </select>
+</mapper>
