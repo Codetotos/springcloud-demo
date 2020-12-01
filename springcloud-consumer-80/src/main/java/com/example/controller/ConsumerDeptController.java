@@ -4,8 +4,8 @@ import com.example.entity.Dept;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
@@ -41,13 +41,13 @@ public class ConsumerDeptController {
         return restTemplate.getForObject(URL + "findAllDepts", List.class);
     }
 
-    @RequestMapping("get")
-    public Dept findDeptById(@RequestParam("deptno") Integer deptno) {
+    @RequestMapping("get/{deptno}")
+    public Dept findDeptById(@PathVariable(value = "deptno") Integer deptno) {
         // 封装参数，这里是HashMap
         HashMap<String, Integer> paramMap = new HashMap<>();
         paramMap.put("deptno", deptno);
         // 使用getForObject请求接口
         // Map需要使用HashMap，且url需要使用占位符
-        return restTemplate.getForObject(URL + "findDeptById?deptno={deptno}", Dept.class, paramMap);
+        return restTemplate.getForObject(URL + "findDeptById/{deptno}", Dept.class, paramMap);
     }
 }

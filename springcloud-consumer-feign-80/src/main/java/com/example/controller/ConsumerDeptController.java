@@ -3,8 +3,8 @@ package com.example.controller;
 import com.example.entity.Dept;
 import com.example.service.DeptClientService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -26,8 +26,8 @@ public class ConsumerDeptController {
         return deptClientService.findAllDepts();
     }
 
-    @RequestMapping("get")
-    public Dept findDeptById(@RequestParam("deptno") Integer deptno) {
+    @RequestMapping("/findDeptById/{deptno}")
+    public Dept findDeptById(@PathVariable("deptno") Integer deptno) {
         return deptClientService.findDeptById(deptno);
     }
 }
