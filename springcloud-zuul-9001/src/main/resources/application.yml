@@ -1,0 +1,22 @@
+server:
+  port: 9001
+spring:
+  application:
+    name: springcloud-demo-zuul
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:7001/eureka/,http://localhost:7002/eureka/,http://localhost:7003/eureka/
+  instance:
+    instance-id: zuul9001.com
+    prefer-ip-address: true
+
+info:
+  app.name: codetotos.zuul
+  company.name: blog.codetotos
+
+zuul:
+  routes:
+    myzuul.serviceId: springcloud-demo-provider
+    myzuul.path: /myzuul/**
